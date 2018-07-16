@@ -1,7 +1,7 @@
 # Screenie
 Upload your best noob stomping moments to Discord with ease.
 
-# How do I use Screenie?
+# How do I set up Screenie?
 To use Screenie, the setup is a bit confusing and un-intuitive. Sadly, it has to be this way to maintain the "speedy" model that this program is designed around.A user needs to set your Server and Channel through the config file, so grab the ServerID and ChannelID and put them into their respective lines in "config.properties". After this, go ahead and double click the screenie Jar file.
 
 # Screenie has no UI, so how do I interact with it?
