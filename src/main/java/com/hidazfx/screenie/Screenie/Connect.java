@@ -16,6 +16,9 @@ import de.btobastian.javacord.listener.message.MessageCreateListener;
 
 public class Connect {
 	public static DiscordAPI api;
+	public static String SERVER_NAME;
+	public static String CHANNEL_NAME;
+	public static boolean serverLoaded = false;
 	public static void send(String email, String password) {
         DiscordAPI api = Javacord.getApi(LoadConfig.email(), LoadConfig.password());
         // connect
@@ -45,6 +48,12 @@ public class Connect {
             	Server server = api.getServerById(LoadConfig.serverid());
             	Channel channel = api.getChannelById(LoadConfig.channelid());
             	channel.sendFile(new File("screenie." + Main.fileformat));
+            	try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             	channel.sendMessage(string);
             }
 
@@ -64,8 +73,10 @@ public class Connect {
                     // register listener
                 	Server server = api.getServerById(LoadConfig.serverid());
                 	Channel channel = api.getChannelById(LoadConfig.channelid());
-                	RecentClippy.lastFileModified("clippy");
-                	channel.sendFile(RecentClippy.lastFileModified("clippy"));
+                	channel.sendFile(RecentClippy.lastFileModified("clippy/"));
+                	SERVER_NAME = server.getName();
+                	CHANNEL_NAME = channel.getName();
+                	serverLoaded = true;
                 }
 
                 @Override
@@ -73,7 +84,30 @@ public class Connect {
                     t.printStackTrace();
                 }
             });
-    }
+        }
+        
+        public static void downloadData(String email, String password) {
+            DiscordAPI api = Javacord.getApi(LoadConfig.email(), LoadConfig.password());
+            // connect
+            api.connect(new FutureCallback<DiscordAPI>() {
+                @Override
+                public void onSuccess(DiscordAPI api) {
+                    // register listener
+                	Server server = api.getServerById(LoadConfig.serverid());
+                	Channel channel = api.getChannelById(LoadConfig.channelid());
+                	SERVER_NAME = server.getName();
+                	CHANNEL_NAME = channel.getName();
+                	serverLoaded = true;
+                	
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    t.printStackTrace();
+                }
+            });
+        }
+        
 
 
 }

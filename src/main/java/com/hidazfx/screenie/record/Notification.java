@@ -86,23 +86,25 @@ public class Notification extends JFrame {
 		});
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 183, 65);
+		setBounds(0, 0, 183, 59);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Not Recording...");
+		JLabel lblNewLabel = new JLabel("Stopped recording");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setBounds(10, 0, 177, 37);
+		lblNewLabel.setBounds(0, 0, 183, 37);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblclickToStart = new JLabel("(Click to Start Recording)");
+		JLabel lblclickToStart = new JLabel("(Click to Dismiss)");
+		lblclickToStart.setHorizontalAlignment(SwingConstants.CENTER);
 		lblclickToStart.setForeground(Color.BLACK);
 		lblclickToStart.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblclickToStart.setBounds(10, 32, 296, 29);
+		lblclickToStart.setBounds(10, 25, 163, 29);
 		contentPane.add(lblclickToStart);
 		
 		Resize.resize();

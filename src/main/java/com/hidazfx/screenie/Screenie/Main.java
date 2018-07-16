@@ -35,7 +35,7 @@ public class Main {
     
     public static void main(String[] args) throws InterruptedException, IOException, AWTException {
     	email = LoadConfig.email();
-    	ClippyRecord.StartRecordingClippy();
+    	Connect.downloadData(LoadConfig.email(), LoadConfig.password());
     	try
     	{
     	    GlobalScreen.registerNativeHook();
@@ -92,11 +92,11 @@ public class Main {
     	            }
     	            if(keyText == "Enter" && isAddDescription == true){
     	            	AddDescription.submit();
-
     	            	isAddDescription=false;
     	            }
     	            if(keyText == "Escape" && isAddDescription == true){
     	            	AddDescription.shutdown();
+    	            	F12Menu.shutdown();
     	            	isAddDescription=false;
     	            }
     	        }
@@ -111,27 +111,5 @@ public class Main {
     	{
     	    e.printStackTrace();
     	}
-    	Thread thread = new Thread(){
-    		public void run(){
-    			while(true){
-    				try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-    				if(ClippyRecord.isFinished = true){
-    					try {
-							ClippyRecord.StartRecordingClippy();
-						} catch (AWTException | InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-    				}
-    			}
-    		}
-    	};
-
-    	thread.start();
     }
 }
