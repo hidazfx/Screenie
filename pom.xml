@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.hidazfx.screenie</groupId>
+  <artifactId>Screenie</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Screenie</name>
+  <description>Screenie</description>
+  
+  <repositories>
+ 	<repository>
+ 		<id>screen-recorder</id>
+ 		<name>Java screen recorder library by agomezmoron</name>
+ 		<url>https://raw.github.com/agomezmoron/screen-recorder/mvn-repo</url>
+ 	</repository>
+ 	<repository>
+   <id>xuggle repo</id>
+   <url>http://xuggle.googlecode.com/svn/trunk/repo/share/java/</url>
+  </repository>
+ </repositories>
+ 
+  <dependencies>
+  <dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+</dependency>
+		 <dependency>
+   			<groupId>com.github.agomezmoron</groupId>
+   			<artifactId>screen-recorder</artifactId>
+   			<version>0.0.3</version>
+ 		</dependency>
+ 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+	<dependency>
+    	<groupId>commons-io</groupId>
+    	<artifactId>commons-io</artifactId>
+    	<version>2.5</version>
+	</dependency>
+<!-- https://mvnrepository.com/artifact/xuggle/xuggle-xuggler -->
+<dependency>
+    <groupId>xuggle</groupId>
+    <artifactId>xuggle-xuggler</artifactId>
+    <version>5.4</version>
+</dependency>
+
+
+
+ 		
+  </dependencies>
+</project>	

@@ -1,6 +1,7 @@
 package com.hidazfx.screenie.Screenie.configuration;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -169,5 +170,23 @@ public class LoadConfig {
 		    // I/O error
 		}
 		return host;
+	}
+	
+	public static File lastFileModified(String dir) {
+	    File fl = new File(dir);
+	    File[] files = fl.listFiles(new FileFilter() {          
+	        public boolean accept(File file) {
+	            return file.isFile();
+	        }
+	    });
+	    long lastMod = Long.MIN_VALUE;
+	    File choice = null;
+	    for (File file : files) {
+	        if (file.lastModified() > lastMod) {
+	            choice = file;
+	            lastMod = file.lastModified();
+	        }
+	    }
+	    return choice;
 	}
 }

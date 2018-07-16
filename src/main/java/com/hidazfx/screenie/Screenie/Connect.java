@@ -1,9 +1,11 @@
 package com.hidazfx.screenie.Screenie;
 
 import java.io.File;
+import java.io.IOException;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.hidazfx.screenie.Screenie.configuration.LoadConfig;
+import com.hidazfx.screenie.record.RecentClippy;
 
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.Javacord;
@@ -14,7 +16,6 @@ import de.btobastian.javacord.listener.message.MessageCreateListener;
 
 public class Connect {
 	public static DiscordAPI api;
-	
 	public static void send(String email, String password) {
         DiscordAPI api = Javacord.getApi(LoadConfig.email(), LoadConfig.password());
         // connect
@@ -52,6 +53,26 @@ public class Connect {
                 t.printStackTrace();
             }
         });
+	}
+	
+        public static void sendClippy(String email, String password) {
+            DiscordAPI api = Javacord.getApi(LoadConfig.email(), LoadConfig.password());
+            // connect
+            api.connect(new FutureCallback<DiscordAPI>() {
+                @Override
+                public void onSuccess(DiscordAPI api) {
+                    // register listener
+                	Server server = api.getServerById(LoadConfig.serverid());
+                	Channel channel = api.getChannelById(LoadConfig.channelid());
+                	RecentClippy.lastFileModified("clippy");
+                	channel.sendFile(RecentClippy.lastFileModified("clippy"));
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    t.printStackTrace();
+                }
+            });
     }
 
 

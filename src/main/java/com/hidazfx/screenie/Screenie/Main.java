@@ -10,14 +10,13 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-import org.apache.commons.io.FileUtils;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
 import com.hidazfx.screenie.Screenie.configuration.LoadConfig;
-import com.hidazfx.screenie.record.ffmpeg;
+import com.hidazfx.screenie.record.ClippyRecord;
 
 
 public class Main {
@@ -34,19 +33,9 @@ public class Main {
 
 
     
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String[] args) throws InterruptedException, IOException, AWTException {
     	email = LoadConfig.email();
-    	File outputFile = new File("output.mp4");
-    	if(outputFile.exists()){
-    		FileUtils.forceDelete(outputFile);
-    		System.out.println("Cleaning up output.mp4");
-    	}
-    	try {
-			ffmpeg.recordScreen();
-		} catch (IOException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+    	ClippyRecord.StartRecordingClippy();
     	try
     	{
     	    GlobalScreen.registerNativeHook();
@@ -122,5 +111,27 @@ public class Main {
     	{
     	    e.printStackTrace();
     	}
+    	Thread thread = new Thread(){
+    		public void run(){
+    			while(true){
+    				try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+    				if(ClippyRecord.isFinished = true){
+    					try {
+							ClippyRecord.StartRecordingClippy();
+						} catch (AWTException | InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+    				}
+    			}
+    		}
+    	};
+
+    	thread.start();
     }
 }

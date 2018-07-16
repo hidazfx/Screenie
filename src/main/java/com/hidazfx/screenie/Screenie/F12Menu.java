@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.hidazfx.screenie.Screenie.configuration.LoadConfig;
+import com.hidazfx.screenie.record.ClippyRecord;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Rectangle;
@@ -118,6 +121,14 @@ public class F12Menu extends JFrame {
 		contentPane.add(lblSendClippie);
 		
 		JLabel lblSendClippie_1 = new JLabel("Send Clippy");
+		lblSendClippie_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				shutdown();
+				ClippyRecord.StopRecordingClippy();
+				Connect.sendClippy(LoadConfig.email(), LoadConfig.password());
+			}
+		});
 		lblSendClippie_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSendClippie_1.setForeground(Color.LIGHT_GRAY);
 		lblSendClippie_1.setFont(new Font("Segoe UI Light", Font.BOLD, 14));
